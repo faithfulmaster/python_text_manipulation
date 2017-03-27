@@ -1,12 +1,12 @@
 import re
 
-# To read the contents of the usfm file
+# Read the contents of the usfm file
 filename = "3JN.usfm"
 print "The file being read is: %r \n" % filename
 
 txt = open(filename)
 
-# Seach for valid tags line by line
+# Search for valid tags line by line
 with open ('3JN.usfm','r') as txt:
     for line in txt:
         m = re.findall("\\\[a-z]{1,3}\d?", line)
