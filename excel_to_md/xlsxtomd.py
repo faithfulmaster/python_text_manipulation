@@ -5,11 +5,11 @@ import openpyxl
 import re
 
 # Open xlsx file
-wb = openpyxl.load_workbook('2 Corinthian-L3.xlsx')
+wb = openpyxl.load_workbook('2_Corinthian-L3.xlsx')
 sheet = wb.get_sheet_by_name('Sheet1')
 
 # Open txt file for writing
-outfile = open("2 Corinthian-L3.md", "w")
+outfile = open("2_Corinthian-L3.md", "w")
 
 p = re.compile(u"\u2022")
 q = re.compile('- ')
