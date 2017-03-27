@@ -11,4 +11,6 @@ neweng = " ".join(eng)
 word = word + " " + neweng
 
 word = word.split(' ')
+
+# Print the new array of words
 print word
