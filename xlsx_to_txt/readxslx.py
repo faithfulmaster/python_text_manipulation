@@ -13,6 +13,6 @@ for row in range(1, sheet.max_row + 1):
     outfile.write(name)
     outfile.write("\n")
 
-# Close the file
+# Close the file and print result
 outfile.close()
 print 'Done.'
