@@ -16,4 +16,5 @@ for i in words:
     if i[0] in 'aeiou':
         vowwords.append(i)
 
+# To print the vowels
 print vowwords
