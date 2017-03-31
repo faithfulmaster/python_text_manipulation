@@ -45,9 +45,3 @@ for row in range(2, sheet.max_row):
 
 wb.close()
 print 'Conversion Done !'
-
-
-#chapter = os.path.dirname(chunk)
-#outfile = open(chunk, "w")
-#if not os.path.exists(str(book)/str(chapter)/outfile):
-#    os.makedirs(str(book)/str(chapter)/outfile)
