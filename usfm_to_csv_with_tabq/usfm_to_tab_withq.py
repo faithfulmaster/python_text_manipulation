@@ -5,7 +5,7 @@ import glob
 import errno
 import os
 
-files = glob.glob('**/*.SFM')
+files = glob.glob('**/*.usfm')
 for name in files:
     file_name = os.path.splitext(name)[0]
     csv_file = file_name + '.csv'
@@ -39,7 +39,7 @@ for name in files:
             if addline:
                 csvwriter.writerow([prev_book, prev_chapter, verse, addline])
                 addline = ""
-            chapter = line[3]
+            chapter = line[3:5]
             if chapter == prev_chapter:
                 continue
             else:
@@ -65,6 +65,10 @@ for name in files:
         elif line[0:3] == '\q ' or line[0:3] == '\m ':
             if line[4:] != " ":
                 addline = addline.strip() + " " + line[3:].strip()
+
+        if (line == d[-1]):
+            csvwriter.writerow([prev_book, prev_chapter, verse, addline])
+
         prev_book = book
         prev_chapter = chapter
 
