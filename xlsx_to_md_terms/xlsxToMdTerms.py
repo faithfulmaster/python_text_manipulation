@@ -17,8 +17,6 @@ for name in files:
     wb = openpyxl.load_workbook(name)
 
     # Initialization of variables
-    p = re.compile(u"\u2022")
-    q = re.compile(',')
     f = file_name.split('.')
     folder = f[0]
 
@@ -34,6 +32,9 @@ for name in files:
         try:
             # Read chapter number
             chapter = str(sheet['B' + str(row)].value)
+            if len(chapter) < 2:
+                chapter = '0' + chapter
+
             if re.search('\d+', chapter):
                 if not os.path.exists('%s/%s' %(folder, chapter)):
                         os.mkdir("%s/%s/" %(folder, chapter))
@@ -43,14 +44,16 @@ for name in files:
             if verse != None:
                 if re.search('-',verse):
                     verse = verse.split('-')[0]
+                    if len(verse) < 2:
+                        verse = '0' + verse
 
             # Read text associated with reference
             text = sheet['D' + str(row)].value
 
             # Write data into separate md files
             if chapter!= None and verse != None and text!= None:
-                text = p.sub('# ', text)
-                text = q.sub('\n\n', text)
+                txt = text.replace(u"\u2022", '# ')
+                text = txt.replace(',', '\n\n')
                 outfile = open('%s/%s/%s.md' %(folder,chapter,verse), "w")
                 outfile.write(unicode(text).encode('utf-8').strip())
 
