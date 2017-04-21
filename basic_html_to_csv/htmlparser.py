@@ -20,7 +20,6 @@ for name in files:
     csvwriter = csv.DictWriter(outfile, fieldnames = ["Chapter", "Verse", "Eng Word"], delimiter ='\t')
     csvwriter.writeheader()
 
-
     # Open html and obtain the table as input
     csvwriter = csv.writer(outfile, delimiter ='\t')
     print "Parsing HTML file"
