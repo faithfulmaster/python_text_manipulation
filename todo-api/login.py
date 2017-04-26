@@ -6,33 +6,46 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from tabledef import *
 
-engine = create_engine('sqlite:///tutorial.db', echo=True)
+engine = create_engine('sqlite:///newtutorial.db', echo=True)
 
 app = Flask(__name__)
 
+@app.route('/signup', methods=['POST'])
+def do_sign():
+    return render_template('registration.html')
+
 @app.route('/registration', methods=['GET', 'POST'])
 def do_reg():
-    render_template('registration.html')
 
     POST_USERNAME = str(request.form['username'])
     POST_PASSWORD = str(request.form['password'])
+    POST_FNAME = str(request.form['fname'])
+    POST_LNAME = str(request.form['lname'])
 
     #create a session
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    user = User(POST_USERNAME, POST_PASSWORD)
+    user = User(POST_USERNAME, POST_PASSWORD, POST_FNAME, POST_LNAME)
     session.add(user)
 
     session.commit()
     return home()
+
+@app.route('/newcontact', methods=['POST'])
+def create_contact():
+
+    NAME = str(request.form['name'])
+    ADDRESS = str(request.form['address'])
+    CONTACT = str(request.form['contact'])
+    
 
 @app.route('/')
 def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        return "Hello Boss! <a href='/logout'>Logout</a>"
+        return render_template('contact.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def do_admin_login():
@@ -57,4 +70,4 @@ def logout():
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
-    app.run(debug=True, host='0.0.0.0', port=4000)
+    app.run(debug=True, host='127.0.0.1', port=5000)
