@@ -1,6 +1,7 @@
 import datetime
 from flask import Flask
-from flask import Flask, flash, redirect, render_template, request, session, abort
+from flask import Flask, flash, redirect, render_template, request, abort
+from flask import session as se
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -32,17 +33,26 @@ def do_reg():
     session.commit()
     return home()
 
-@app.route('/newcontact', methods=['POST'])
+@app.route('/newcontact', methods=['GET', 'POST'])
 def create_contact():
+
 
     NAME = str(request.form['name'])
     ADDRESS = str(request.form['address'])
     CONTACT = str(request.form['contact'])
-    
+
+    if se.get('logged_in') == True:
+        contact = Contact(NAME, ADDRESS, CONTACT)
+
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        session.add(contact)
+        session.commit()
+    return home()
 
 @app.route('/')
 def home():
-    if not session.get('logged_in'):
+    if not se.get('logged_in'):
         return render_template('login.html')
     else:
         return render_template('contact.html')
@@ -58,14 +68,14 @@ def do_admin_login():
     query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]) )
     result = query.first()
     if result:
-        session['logged_in'] = True
+        se['logged_in'] = True
     else:
         flash('wrong password!')
     return home()
 
 @app.route("/logout")
 def logout():
-    session['logged_in'] = False
+    se['logged_in'] = False
     return home()
 
 if __name__ == "__main__":
