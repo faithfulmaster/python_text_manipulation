@@ -1,11 +1,15 @@
+from __future__ import print_function
 import datetime
 from flask import Flask
-from flask import Flask, flash, redirect, render_template, request, abort
+from flask import Flask, flash, redirect, render_template, request, abort, url_for
 from flask import session as se
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from tabledef import *
+import requests
+import sys
+
 
 engine = create_engine('sqlite:///newtutorial.db', echo=True)
 
@@ -14,6 +18,27 @@ app = Flask(__name__)
 @app.route('/signup', methods=['POST'])
 def do_sign():
     return render_template('registration.html')
+
+@app.route('/showcontact', methods=['GET', 'POST'])
+def dispcontact():
+
+    if se.get('logged_in') == True:
+
+        Session = sessionmaker(bind=engine)
+        s = Session()
+        Username = se['name']
+
+        query = s.query(User.id1).filter(User.username.in_([Username]))
+        result = query.first()
+
+        if result:
+            local = result[0]
+            query = s.query(Contact).filter(Contact.local_id.in_([local]))
+            result = query.all()
+            if result:
+                return render_template('dispcontact.html', cont=result)
+
+        return home()
 
 @app.route('/registration', methods=['GET', 'POST'])
 def do_reg():
@@ -42,16 +67,26 @@ def create_contact():
     CONTACT = str(request.form['contact'])
 
     if se.get('logged_in') == True:
-        contact = Contact(NAME, ADDRESS, CONTACT)
 
         Session = sessionmaker(bind=engine)
-        session = Session()
-        session.add(contact)
-        session.commit()
-    return home()
+        s = Session()
+        Username = se['name']
+
+        query = s.query(User.id1).filter(User.username.in_([Username]))
+        result = query.first()
+
+        if result:
+            local_id = result[0]
+            contact = Contact(local_id, NAME, ADDRESS, CONTACT)
+            s.add(contact)
+            s.commit()
+            return home()
+        else:
+            return redirect(url_for('logout'))
 
 @app.route('/')
 def home():
+    sumSessionCounter()
     if not se.get('logged_in'):
         return render_template('login.html')
     else:
@@ -59,7 +94,7 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def do_admin_login():
-
+    sumSessionCounter()
     POST_USERNAME = str(request.form['username'])
     POST_PASSWORD = str(request.form['password'])
 
@@ -68,13 +103,22 @@ def do_admin_login():
     query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]) )
     result = query.first()
     if result:
+        se['name'] = POST_USERNAME
         se['logged_in'] = True
+        return render_template('contact.html')
     else:
         flash('wrong password!')
-    return home()
+        return home()
+
+def sumSessionCounter():
+  try:
+    se['counter'] += 1
+  except KeyError:
+    se['counter'] = 1
 
 @app.route("/logout")
 def logout():
+    se.clear()
     se['logged_in'] = False
     return home()
 
