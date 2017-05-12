@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+{% block body %}
+{% if session['logged_in'] %}
+
+  <!doctype html>
+
+  <html>
+     <body>
+       <form action="/login" method="POST">
+       	<div class="login">
+       		<div class="login-screen">
+       			<div class="app-title">
+              <p> <b> <a href='/'>Add new contact</a> <a href='/logout'>Logout</a></p>
+              <br>
+              <h1> Your contacts </h1>
+              <table border = 1>
+
+                <tr>
+                   <th> Name </th> <th> Address </th> <th> Mobile number </th>
+                </tr>
+
+                {% for obj in cont %}
+                <tr>
+                  <td>{{obj.name}}</td>
+                  <td>{{obj.address}}</td>
+                  <td>{{obj.contact}}</td>
+                </tr>
+                {% endfor %}
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+     </body>
+  </html>
+
+{% endif %}
+{% endblock %}

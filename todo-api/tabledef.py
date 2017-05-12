@@ -11,7 +11,7 @@ class User(Base):
     """"""
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True)
+    id1 = Column(Integer, primary_key=True)
     username = Column(String, unique=True)
     password = Column(String)
     fname = Column(String)
@@ -28,16 +28,17 @@ class Contact(Base):
     """"""
     __tablename__ = "contacts"
 
-    id = Column(Integer, primary_key=True)
-    local_id = Column(Integer, ForeignKey('users.id'))
+    id2 = Column(Integer, primary_key=True)
+    local_id = Column(Integer, ForeignKey('users.id1'))
     name = Column(String)
     address = Column(String)
     contact = Column(String)
 
     local = relationship('User', foreign_keys=local_id)
 
-    def __init__(self, name, address, contact):
+    def __init__(self, local_id, name, address, contact):
         """"""
+        self.local_id = local_id
         self.name = name
         self.address = address
         self.contact = contact
