@@ -6,7 +6,7 @@ import glob
 import errno
 import datetime
 
-files = glob.glob('Source/Revelation.xlsx')
+files = glob.glob('Source/ACT.xlsx')
 for name in files:
     file_name = name.split('/')[1]
     print file_name
@@ -14,7 +14,7 @@ for name in files:
     # Open xlsx file
     wb1 = openpyxl.load_workbook(name)
 
-    files = glob.glob('Urdu/66REVELATIONS.xlsx')
+    files = glob.glob('Urdu/44ACTS.xlsx')
     for name in files:
         file_name = name.split('/')[1]
         print file_name
@@ -39,23 +39,26 @@ for name in files:
                 for i in text:
                     for row2 in range(3, sheet2.max_row+1):
                         text2 = sheet2['B' + str(row2)].value
-                        transl = sheet2['C' + str(row2)].value
+                        transl = sheet2['D' + str(row2)].value
 
                         if type(text2) == unicode and transl != None:
                             text2 = text2.encode('utf-8')
-                            transl = transl.encode('utf-8')
+
 
                             if re.search(text2, i):
-                                if transl.endswith('?'):
+                                if transl[-1] == u"\u0964":
+                                    transl = transl[0:-1]
+                                    transl = transl.encode('utf-8')
+                                    t = re.sub(text2, transl, i)
+                                elif transl.endswith('?'):
+                                    transl = transl.encode('utf-8')
                                     text2 = text2[0:-1]
                                     text2 = text2 + '\?'
                                     transl = transl[0:-1]
                                     transl = transl + '?'
                                     t = re.sub(text2, transl, i)
-                                elif transl[-1] == "\u0964":
-                                    transl = transl[0:-1]
-                                    t = re.sub(text2, transl, i)
                                 else:
+                                    transl = transl.encode('utf-8')
                                     t = re.sub(text2, transl, i)
                                 t = t.decode('utf-8') + "\n"
                                 target = target + t
