@@ -28,3 +28,4 @@
 - USFM tag validator
 - Parse Strong's Lexicon
 - Lexicon Search app
+- Format translation of QA and copy to target file
