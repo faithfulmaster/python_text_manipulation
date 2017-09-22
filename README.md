@@ -40,7 +40,7 @@ __1. Demo__
 - single XLSX to single MD _(xlsx_to_md)_
 - single XLSX to multiple MD Notes v1 _(xlsx_to_md_file_single)_
 - single XLSX to multiple MD Notes v2 _(xlsx_to_md_file_single)_
-- XLSX to TXT
+- basic XLSX to TXT _(xlsx_to_txt)_
 
 __2. Tasks__
 - single CSV to single USFM file _(csv_to_usfm)_
