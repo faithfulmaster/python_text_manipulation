@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+{% block body %}
+{% if session['logged_in'] %}
+
+
+<form action="/newcontact" method="POST">
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<p><b> Hello ! <a href='/logout'>Logout</a></p>
+				<br>
+				<h2>Enter contact details</h2>
+			</div>
+
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Full name" name="name">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Address" name="address">
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Mobile" name="contact">
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+                <input type="submit" value="Submit" class="btn btn-primary btn-large btn-block" >
+			    <br>
+				</div>
+		</div>
+	</div>
+</form>
+
+<form action="/showcontact" method="POST">
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<input type="submit" value="Display Contacts" class="btn btn-primary btn-large btn-block" >
+			</div>
+		</div>
+	</div>
+</form>
+{% endif %}
+{% endblock %}
