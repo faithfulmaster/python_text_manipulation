@@ -1,13 +1,21 @@
-# Python text manipulation:
+# Python text manipulation
 
-* Steps to use the scripts available in this repository, is included in the README file for each folder
+-- Steps to use the scripts available in this repository, is included in the README file for each folder --
+
+__Requirements for this repository:__
+- Python 2.7
+- Flask Framework
+- Python packages (python-docx, openpyxl, Anaconda, pip, pandas, csv, json, BeautifulSoup)
+- mySQL
 
 ## Learning
-__1 Learn Python__
+__1. Learn Python__
 - Solved examples (50 examples) from learnpythonthehardway.com
-__2 Flask Tutorial__
+
+__2. Flask Tutorial__
 - Flask Python tutorials
-__3 Examples__
+
+__3. Examples__
 - Add new word _(add_new_word)_
 - Capitalize each line _(capitalize_line)_
 - Add, delete and view records from MySQL _(console_to_mysql)_
@@ -26,14 +34,15 @@ __3 Examples__
 
 
 ## File conversions
-__1 Demo__
+__1. Demo__
 - basic HTML to CSV _(basic_html_to_csv)_
 - single DOCX to multiple MD for QA _(docx_to_md_QA_single)_
 - single XLSX to single MD _(xlsx_to_md)_
 - single XLSX to multiple MD Notes v1 _(xlsx_to_md_file_single)_
 - single XLSX to multiple MD Notes v2 _(xlsx_to_md_file_single)_
 - XLSX to TXT
-__2 Tasks__
+
+__2. Tasks__
 - single CSV to single USFM file _(csv_to_usfm)_
 - DOCX to MD QA _(docx_to_md_QA)_
 - HTML to CSV interlinear _(html_to_csv_interlinear)_
