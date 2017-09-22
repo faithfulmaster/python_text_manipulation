@@ -35,22 +35,31 @@ __3. Examples__
 
 ## File conversions
 __1. Demo__
-- basic HTML to CSV _(basic_html_to_csv)_
-- single DOCX to multiple MD for QA _(docx_to_md_QA_single)_
-- single XLSX to single MD _(xlsx_to_md)_
-- single XLSX to multiple MD Notes v1 _(xlsx_to_md_file_single)_
-- single XLSX to multiple MD Notes v2 _(xlsx_to_md_file_single)_
-- basic XLSX to TXT _(xlsx_to_txt)_
+- Basic HTML to CSV _(basic_html_to_csv)_
+- Single DOCX to multiple MD for QA _(docx_to_md_QA_single)_
+- Single XLSX to single MD _(xlsx_to_md)_
+- Single XLSX to multiple MD Notes v1 _(xlsx_to_md_file_single)_
+- Single XLSX to multiple MD Notes v2 _(xlsx_to_md_file_single)_
+- Basic XLSX to TXT _(xlsx_to_txt)_
 
 __2. Tasks__
-- single CSV to single USFM file _(csv_to_usfm)_
+- Single CSV to single USFM file _(csv_to_usfm)_
 - DOCX to MD QA _(docx_to_md_QA)_
+- DOCX to MD Notes _(docx_to_md_notes)_
+- DOCX to USFM _(docx_to_usfm)_
 - HTML to CSV interlinear _(html_to_csv_interlinear)_
 - Simple USFM to CSV _(usfm_to_csv)_
+- XLSX Formatting _(xlsx_format)_
+- XLSX to MD Format Terms _(xlsx_to_md_format_terms)_
+- XLSX to MD QA _(xlsx_to_md_QA)_
+- XLSX to MD Notes _(xlsx_to_md_notes)_
 - XLSX to MD terms _(xlsx_to_md_terms)_
 
 ## Other Tasks
 - Lexicon Search app using Python GUI _(LexiconSearchScript)_
 - Format translation of QA and copy to target file _(formatQAfromXlsx)_
 - Parse Strong's Lexicon _(parseStrongsLexicon)_
+- Rectify USFM errors _(rectify_USFM)_
+- Translation Words Project _(translation_Words)_
+- Google Translate API to translate files (only md/text files) _(using_Google_Translate)_
 - USFM tag validator _(validate_usfm_tags)_

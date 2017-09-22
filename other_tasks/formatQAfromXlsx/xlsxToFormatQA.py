@@ -6,7 +6,7 @@ import glob
 import errno
 import datetime
 
-files = glob.glob('Source/ACT.xlsx')
+files = glob.glob('Source/1PE.xlsx')
 for name in files:
     file_name = name.split('/')[1]
     print file_name
@@ -14,7 +14,7 @@ for name in files:
     # Open xlsx file
     wb1 = openpyxl.load_workbook(name)
 
-    files = glob.glob('Urdu/44ACTS.xlsx')
+    files = glob.glob('Urdu/601PETER.xlsx')
     for name in files:
         file_name = name.split('/')[1]
         print file_name
