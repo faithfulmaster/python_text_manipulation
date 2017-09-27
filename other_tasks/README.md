@@ -16,6 +16,12 @@
 	-- Run the script
 - __Rectify USFM errors__ _(rectify_USFM)_
 - __Parse Strong's Lexicon__ _(parseStrongsLexicon)_ 
+- __Open Bible Stories__ _(OBS)_
+
+   -- Script for placing links to images from the target language column to source language column in a docx files
+
+   -- DOCX to MD (OBS)
+
 - __Translation Words Project__ _(translation_Words)_
 
    It consists of the following scripts:
@@ -27,6 +33,8 @@
    --	Place links in MD files (TW)
 
    -- 	Remove links in MD files for Titus (TW)
+
+   --	Remove links in MD files for remaining files (all files except Titus) (TW)
 
    --	Count number of words in MD files (TW)
 
