@@ -9,7 +9,7 @@ import glob
 import errno
 
 mdfiles = glob.glob('TW/**/*.md')
-trmdfiles = glob.glob('MD-Titus-Hindi/*.md')
+trmdfiles = glob.glob('TW-Titus-MD/*.md')
 outfolder = "TitusHindiTW"
 if not os.path.exists(outfolder):
 	os.mkdir(outfolder)
@@ -53,18 +53,22 @@ for i in trmdfiles:
 								outline += newline
 								item += 1
 							outline += trline[end:]
-						print outline
-						outfile.write(outline)
+						outline1 = re.sub("__\s?\*", "* __", outline)
+						outline2 = re.sub("\)\s__", ")__", outline1)
+						outline3 = re.sub("__\s\[", "__[", outline2)
+						outline4 = re.sub("\*__", "* __", outline3)
+						outfile.write(outline4)
 					if outline == "":
 						process1 = re.sub("# #", "##", trline)
 						process2 = re.sub("## ##", "##", process1)
-						if re.search("Strong's", process2):
+						if re.search("\*\S",process2):
+							process3 = re.sub("\*", "* ", process2)
+							outfile.write(process3)
+						elif re.search("Strong's", process2):
 							print " "
 						else:
-							print process2
 							outfile.write(process2)
-	
-				print strongnum
+
 				outfile.write(strongnum)
 				outfile.close()
 								
