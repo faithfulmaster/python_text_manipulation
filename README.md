@@ -58,6 +58,7 @@ __2. Tasks__
 ## Other Tasks
 - Lexicon Search app using Python GUI _(LexiconSearchScript)_
 - Format translation of QA and copy to target file _(formatQAfromXlsx)_
+- Open Bible Stories _(OBS)_
 - Parse Strong's Lexicon _(parseStrongsLexicon)_
 - Rectify USFM errors _(rectify_USFM)_
 - Translation Words Project _(translation_Words)_
