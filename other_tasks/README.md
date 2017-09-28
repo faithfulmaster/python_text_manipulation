@@ -40,6 +40,8 @@
 
    --	Translate MD files (Available under the heading below)
 
+   --	Create config.yaml from the TW by searching in the ULB bible files (.usfm) 
+
 - __Google Translate API to translate files (only md/text files)__ _(using_Google_Translate)_
 		
    Steps to connect to Google Cloud API: Pre-requisite: Python 2.7 should be installed
